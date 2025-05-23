@@ -1,1 +1,39 @@
 /// <reference types="vite/client" />
+
+
+
+export interface menuReducerActionType { // navbar
+    type: string;
+    position?: { top: number; right: number };
+    hoveredIndex?: number | null;
+    state?: boolean;
+    clickedIndex?: number;
+}
+
+export interface desktopMenuReducerStateType { // navbar
+    menuTitlePosition: { top: number; right: number };
+    menuTitleHoveredIndex: number | null | undefined;
+    isMenuTitleHovered: boolean;
+    isSubmenuHovered: boolean;
+}
+
+export interface mobileMenuReducerStateType { // navbar
+    isBurgerMenuClicked: boolean;
+    isBurgerMenuTitleClicked: boolean ;
+    burgerMenuTitleClickedIndex: number | null,
+}
+
+
+export interface navbarMenuType { // constant/navbarMenu.ts
+    title: string;
+    id: number;
+    link?: string;
+    options: Array<{
+        name: string;
+        link?: string;
+        subMenu?: Array<{
+            name: string;
+            link: string;
+        }>;
+    }>
+}

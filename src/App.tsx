@@ -1,7 +1,12 @@
+import MainLayout from "@components/layouts/MainLayout"
+
 function App() {
 
   return (
-    <div>Hello World!</div>
+    <div className="font-numberland">
+
+      <MainLayout />
+    </div>
   )
 }
 

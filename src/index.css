@@ -1,37 +1,245 @@
-@import "tailwindcss";
-@plugin "daisyui";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@plugin "daisyui/theme" {
-  name: "numberland";
-  default: false;
-  prefersdark: false;
-  color-scheme: "light";
-  --color-base-100: #f5f8fc;
-  --color-base-200: #f9f9f9;
-  --color-base-300: #eaeaea;
-  --color-base-content: oklch(20% 0 0);
-  --color-primary: #0098d1;
-  --color-primary-content: oklch(42% 0.095 57.708);
-  --color-secondary: #ffb03b;
-  --color-secondary-content: #e5eefb;
-  --color-accent: #01ad4e;
-  --color-accent-content: oklch(100% 0 0);
-  --color-neutral: #646464;
-  --color-neutral-content: oklch(92% 0.003 48.717);
-  --color-info: oklch(74% 0.16 232.661);
-  --color-info-content: oklch(39% 0.09 240.876);
-  --color-success: oklch(76% 0.177 163.223);
-  --color-success-content: oklch(37% 0.077 168.94);
-  --color-warning: oklch(82% 0.189 84.429);
-  --color-warning-content: oklch(41% 0.112 45.904);
-  --color-error: oklch(70% 0.191 22.216);
-  --color-error-content: oklch(39% 0.141 25.723);
-  --radius-selector: 1rem;
-  --radius-field: 0.5rem;
-  --radius-box: 1rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 1;
-  --noise: 0;
+@font-face {
+  font-family: "Yekan";
+  src: url("./Fonts/Yekan.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ISans";
+  src: url("./Fonts/IranianSans.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Samim";
+  src: url("./Fonts/Samim.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Numberland";
+  src: url("./Fonts/NumberLandFontRegular.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Numberland";
+  src: url("./Fonts/NumberLandFontMedium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Numberland";
+  src: url("./Fonts/NumberLandFontBold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@layer components {
+  .menu-Item {
+    display: flex;
+    position: relative;
+    padding: 0.5rem;
+    padding-top: 10px;
+  }
+
+  .menu-Item:hover {
+    @apply animate-menuHoverEffect;
+  }
+
+  @media (max-width: 1024px) {
+    .menu-Item {
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+
+  .underline-effect {
+    background-image: linear-gradient(to right, #ffb03b 0%, #eba132 100%);
+    background-size: 0 0.3em, 0 0.3em;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 400ms;
+  }
+
+  .underline-effect:hover {
+    background-size: 100% 0.2em, 0 0.2em;
+  }
+
+  .arrow-top::before {
+    content: "";
+    width: 18px;
+    height: 12px;
+    position: absolute;
+    top: 2px;
+    right: 15px;
+    clip-path: polygon(50% 16%, 0% 100%, 100% 100%);
+    background-color: inherit;
+    box-shadow: 0px 0px 3px 2px rgba(0, 152, 209, 0.05);
+  }
+
+  .arrow-right::before {
+    content: "";
+    width: 12px;
+    transform: rotate(90deg);
+    height: 12px;
+    position: absolute;
+    top: 20px;
+    right: -11px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(196, 181, 181, 0.404) 100%
+    );
+    clip-path: polygon(50% 16%, 0% 100%, 100% 100%);
+  }
+
+  .menu-title-dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .menu-svg {
+    width: 9px;
+    opacity: 0.5;
+    margin-bottom: 2px;
+    @apply group-hover:opacity-100;
+  }
+
+  .button-effect::before {
+    content: "";
+    width: 18%;
+    height: 100%;
+    background-color: inherit;
+    filter: brightness(0.9);
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    transition: all 0.6s;
+    border-radius: 50px;
+  }
+
+  .button-effect::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 10rem;
+    bottom: 0;
+    left: 0;
+    z-index: -2;
+    background-color: inherit;
+  }
+
+  .button-effect:hover::before {
+    transform: scale(20, 1.8);
+  }
+
+  #bars-icon span {
+    width: 1rem;
+    height: 2px;
+    display: inline-block;
+    @apply bg-primary;
+    border-radius: 10px;
+  }
+
+  .hp-listItem {
+    @apply flex items-center gap-3 font-light text-base text-neutral bg-base-200 px-4 py-3 rounded-lg hover:bg-primary hover:text-white transition-all duration-300;
+  }
+  .hp-listItem-icon {
+    @apply w-6 h-6;
+  }
+
+  .common-questions p {
+    @apply text-neutral pr-2 py-2;
+  }
+
+  .common-questions h6 {
+    @apply text-darkPrimary text-lg;
+  }
+
+  .clickedServiceBtn {
+    @apply text-darkPrimary;
+  }
+  .clickedServiceBtn::after {
+    content: "";
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+
+    @apply bg-primary;
+  }
+
+  .mobbuydis::after {
+    content: "";
+}
+
+  @media (min-width: 0px) and (max-width: 640px) {
+    .mobbuydis::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-repeat: repeat;
+      height: 15px;
+      background-size: 32px 20px;
+      background-image: radial-gradient(
+        circle at 8px 19px,
+        #f4f7fb 12px,
+        transparent 13px
+      );
+    }
+  }
+}
+
+@layer utilities {
+  .menu-transition {
+    transition: right 0.5s, opacity 0.05s; /* Transition for top and right properties */
+  }
+
+  .menu-open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .menu-close {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .modal-box::-webkit-scrollbar-button {
+    color: #eba132;
+    background-color: #f4f7fb;
+ }
+
+  /* Firefox */
+  
+
+}
+
+@layer base {
+  body {
+    @apply flex justify-center;
+  }
+  #root {
+    @apply w-full;
+  }
 }
