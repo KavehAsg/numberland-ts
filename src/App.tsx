@@ -4,7 +4,6 @@ function App() {
 
   return (
     <div className="font-numberland">
-
       <MainLayout />
     </div>
   )

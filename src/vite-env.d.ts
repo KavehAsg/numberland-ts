@@ -37,3 +37,17 @@ export interface navbarMenuType { // constant/navbarMenu.ts
         }>;
     }>
 }
+
+export interface loginInputsType {
+    username: string;
+    password: string;
+    phone: string;
+    isShowPassword: boolean;
+}
+
+export type loginFormsPropsType = {
+    loginInputs: loginInputsType;
+    setLoginInputs?: React.Dispatch<React.SetStateAction<loginInputsType>>;
+    loginMethodBtns: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    inputsChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
